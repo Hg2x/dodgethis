@@ -12,6 +12,7 @@ namespace Player
         [SerializeField] private int playerCurrentStamina; // show in inspector
         [SerializeField] private int staminaIncreasePerTick = 1;
         [Tooltip("In seconds")] [SerializeField] float staminaTickRate = 0.1f;
+        private int difficulty;
 
         public delegate void Health();
         public static event Health SetHealth;
@@ -19,6 +20,8 @@ namespace Player
         float counter = 0;
         private void Start()
         {
+            difficulty = PlayerPrefs.GetInt("Difficulty Dropdown"); // todo this difficulty value actually affect gameplay. 0 easy, 1 normal, 2 hard
+            Debug.Log(difficulty);
             ResetPlayerStatus();
             if (SetHealth != null)
                 SetHealth();
